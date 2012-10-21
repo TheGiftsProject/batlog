@@ -1,4 +1,5 @@
-require 'lib/log/loggable_error'
+require 'spec_helper'
+#require 'lib/log/loggable_error'
 
 describe Log::LoggableError do
   subject { Log::LoggableError }

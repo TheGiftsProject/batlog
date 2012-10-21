@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     log (0.9)
+      rails
 
 GEM
   remote: http://rubygems.org/
@@ -97,6 +98,5 @@ PLATFORMS
 
 DEPENDENCIES
   log!
-  rails
   rake
   rspec

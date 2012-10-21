@@ -1,5 +1,8 @@
+require "log"
+require 'rails'
+
 module Log
-  class Engine < Rails::Engine
-    isolate_namespace Log
+  class Engine < ::Rails::Engine
+    #isolate_namespace Log
   end
 end

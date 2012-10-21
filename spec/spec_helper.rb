@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'rspec'
+require 'bundler/setup'
 require 'log'
 
 

@@ -7,7 +7,7 @@ class RailsConsoleLogger
   def self.log(severity, message, context, events, metadata)
     text = build_log_text(severity, message, context, events, metadata)
 
-    logger = Rails.logger
+    logger = ::Rails.logger
     begin
       logger.send(severity.to_s, text)
     rescue

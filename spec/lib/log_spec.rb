@@ -1,4 +1,4 @@
-require 'lib/log'
+require 'spec_helper'
 
 describe Log do
   subject { Log }

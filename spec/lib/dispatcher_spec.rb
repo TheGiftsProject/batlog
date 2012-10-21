@@ -1,4 +1,4 @@
-require 'lib/log/dispatcher'
+require 'spec_helper'
 
 module Log
   describe Dispatcher do

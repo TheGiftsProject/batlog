@@ -1,4 +1,4 @@
-require 'lib/log/events'
+require 'spec_helper'
 
 describe Log::Events do
   let(:test_name) { "Test name" }
