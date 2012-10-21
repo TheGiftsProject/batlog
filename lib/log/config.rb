@@ -1,3 +1,6 @@
+require 'loggers/database_logger'
+require 'loggers/rails_console_logger'
+
 module Log
   class Config
 
@@ -14,18 +17,13 @@ module Log
     end
 
     def default_loggers
-
       loggers = []
 
-      if defined?(::Rails)
-        require 'lib/loggers/database_logger'
-        require 'lib/loggers/rails_console_logger'
-        loggers << DatabaseLogger
-        loggers << RailsConsoleLogger
-      end
+      loggers << DatabaseLogger
+      loggers << RailsConsoleLogger
 
       if defined?(Exceptional)
-        require 'lib/loggers/exceptional_logger'
+        require 'loggers/exceptional_logger'
         loggers << ExceptionalLogger
       end
 

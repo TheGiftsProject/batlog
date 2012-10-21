@@ -1,4 +1,4 @@
-require 'lib/log'
+require 'log/log'
 require 'exceptional'
 
 class ExceptionalLogger

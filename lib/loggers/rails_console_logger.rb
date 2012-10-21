@@ -1,4 +1,4 @@
-require 'lib/log/utils'
+require 'log/utils'
 
 class RailsConsoleLogger
 

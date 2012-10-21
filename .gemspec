@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.email       = 'agartner@ebay.com'
   s.platform    = Gem::Platform::RUBY
 
+  s.files       = `git ls-files`.split("\n")
   s.require_path = "lib"
-  s.files       = ["lib/log.rb"]
 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'

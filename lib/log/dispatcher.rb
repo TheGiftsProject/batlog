@@ -1,4 +1,4 @@
-require 'lib/log/loggable_error'
+require 'log/loggable_error'
 
 module Log
   class Dispatcher
@@ -27,7 +27,7 @@ module Log
 
     private
 
-    def single_dispatch(logger, severity, message,context, events, metadata)
+    def single_dispatch(logger, severity, message, context, events, metadata)
       result = logger.log(severity, message, context, events, metadata)
       metadata.merge!(result) if (result.kind_of?(Hash))
     end

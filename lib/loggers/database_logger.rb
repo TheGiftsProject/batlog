@@ -1,9 +1,9 @@
-require 'lib/log/utils'
+require 'log/utils'
 
 class DatabaseLogger
   def self.log(severity, message, context, events, metadata)
     log = nil
-    context.merge!({ :metadata => metadata })
+    context = context.merge({ :metadata => metadata }) unless metadata.empty?
     message = Log::Utils.prepare_message(message, true)
     # In order to prevent logs from being deleted by a rollback, we need to create a new database connection (a new transaction doesn't work).
     # The only way to create a new database connection is to open a new thread.
@@ -21,9 +21,8 @@ class DatabaseLogger
   private
 
   def self.create_log(severity, message, context, events)
-    DbLog.create!(:severity => severity.to_s,
-                  :message  => message,
-                  :context  => context,
-                  :events   => events.map{ |event| DbLogEvent.new(event) })
+    Log::DbLog.create!(:severity => severity.to_s,
+                       :message  => message,
+                       :context  => context)
   end
 end

@@ -1,8 +1,8 @@
-require 'lib/log/config'
-require 'lib/log/dispatcher'
-require 'lib/log/events'
-require 'lib/log/loggable_error'
-require 'lib/log/utils'
+require 'log/config'
+require 'log/dispatcher'
+require 'log/events'
+require 'log/loggable_error'
+require 'log/utils'
 
 module Log
 
