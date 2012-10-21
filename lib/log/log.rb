@@ -28,7 +28,7 @@ module Log
     end
   end
 
-  def self.assert(condition, message, context, severity=:error, raise_error=false)
+  def self.assert(condition, message, context = {}, severity=:error, raise_error=nil)
     if condition
       return true
     else
@@ -52,7 +52,6 @@ module Log
     context = handle_loggable_error(message, context)
     dispatcher.dispatch(severity, message, context, Events.all)
   end
-
 
   def self.dispatcher
     @dispatcher ||= Dispatcher.new
