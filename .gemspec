@@ -1,3 +1,6 @@
+# -*- encoding: utf-8 -*-
+require "lib/log/version"
+
 Gem::Specification.new do |s|
   s.name        = 'log'
   s.version     = Log::VERSION
@@ -6,8 +9,8 @@ Gem::Specification.new do |s|
   s.email       = 'agartner@ebay.com'
   s.platform    = Gem::Platform::RUBY
 
-  s.files       = ["lib/log.rb"]
   s.require_path = "lib"
+  s.files       = ["lib/log.rb"]
 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
