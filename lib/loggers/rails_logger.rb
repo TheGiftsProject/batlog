@@ -1,6 +1,6 @@
 require 'log/utils'
 
-class RailsConsoleLogger
+class RailsLogger
 
   NEW_LINE = "\r\n"
 

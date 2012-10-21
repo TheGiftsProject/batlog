@@ -20,7 +20,7 @@ module Log
       loggers = []
 
       loggers << DatabaseLogger
-      loggers << RailsConsoleLogger
+      loggers << RailsLogger
 
       if defined?(Exceptional)
         require 'loggers/exceptional_logger'
