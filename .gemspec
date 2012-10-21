@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require "lib/log/version"
+require "./lib/log/version"
 
 Gem::Specification.new do |s|
   s.name        = 'log'
