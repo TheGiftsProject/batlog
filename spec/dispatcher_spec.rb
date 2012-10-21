@@ -1,9 +1,9 @@
-require 'log/dispatcher'
+require 'lib/log/dispatcher'
 
 describe Log::Dispatcher do
   class Logger1
     def self.meta_data
-      { some: "Hash" }
+      { :some => "Hash" }
     end
 
     def self.log(severity, message, context_data, events, metadata)
@@ -31,8 +31,8 @@ describe Log::Dispatcher do
 
     let (:severity) { :error }
     let (:message) { "test message" }
-    let (:context_data) { { a: 2 } }
-    let (:events) { [{ name: "bla", data: { b: 3 } }] }
+    let (:context_data) { { :a => 2 } }
+    let (:events) { [{ :name => "bla", :data => { :b => 3 } }] }
 
     def dispatch
       subject.dispatch(severity, message, context_data, events)

@@ -1,15 +1,15 @@
-require_relative 'log/dispatcher'
-require_relative 'log/events'
-require_relative 'log/loggable_error'
-require_relative 'log/utils'
+require 'lib/log/dispatcher'
+require 'lib/log/events'
+require 'lib/log/loggable_error'
+require 'lib/log/utils'
 
 module Log
   SEVERITIES = {
-    debug: 0,
-    info: 1,
-    warn: 2,
-    error: 3,
-    fatal: 4
+    :debug  => 0,
+    :info   => 1,
+    :warn   => 2,
+    :error  => 3,
+    :fatal  => 4
   }
 
   @@raise_on_log_failure = false
@@ -33,8 +33,9 @@ module Log
   # log.{severity}(message, context=nil)
   # i.e. log.info("hello", {:subsystem => :user, :action => "user creation"})
   SEVERITIES.each_key do |severity|
-    (class << self; self; end).send(:define_method, severity.to_s) do |message, context=nil|
-      write(severity, message, context)
+    (class << self; self; end).send(:define_method, severity.to_s) do |*args|
+      message, ctx = *args
+      self.write(severity, message, ctx)
     end
   end
 

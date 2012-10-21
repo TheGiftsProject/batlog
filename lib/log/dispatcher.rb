@@ -1,4 +1,4 @@
-require_relative 'loggable_error'
+require 'lib/log/loggable_error'
 
 module Log
   class Dispatcher
@@ -41,8 +41,8 @@ module Log
         logger_errors = failed_loggers.map{ |logger_name, logger_error| { logger_name => logger_error.message } }
         working_loggers = @loggers.reject{ |logger| failed_loggers.keys.include?(logger.name) }
         log_error_dispatcher = Dispatcher.new(working_loggers, @raise_on_log_failure)
-        log_error_dispatcher.dispatch(:error, "Loggers failed", { logger_errors: logger_errors })
-        raise LoggableError.new("Loggers failed", { logger_errors: logger_errors }) if (@raise_on_log_failure)
+        log_error_dispatcher.dispatch(:error, "Loggers failed", { :logger_errors => logger_errors })
+        raise LoggableError.new("Loggers failed", { :logger_errors => logger_errors }) if (@raise_on_log_failure)
       end
     end
   end

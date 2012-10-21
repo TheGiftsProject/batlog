@@ -1,16 +1,16 @@
-require 'log'
+require 'lib/log'
 
 describe Log do
   subject { Log }
 
   let(:severity) { :error }
   let(:test_message) { "Test message" }
-  let(:test_context) { { foo: 2, bar: "hello" } }
+  let(:test_context) { { :foo => 2, :bar => "hello" } }
 
   let(:event_name) { "Event name" }
-  let(:event_data) { { ev_data: 5 } }
+  let(:event_data) { { :ev_data => 5 } }
 
-  let(:error_context) { { error: 10 } }
+  let(:error_context) { { :error => 10 } }
   let(:error_message) { Log::LoggableError.new(test_message, error_context) }
 
   before(:each) do
@@ -97,7 +97,7 @@ describe Log do
     context "when message is a LoggableError" do
       it "adds the error's data to the context" do
         new_context = subject.send(:handle_loggable_error, error_message, test_context)
-        new_context.should == test_context.merge({ error_data: error_context })
+        new_context.should == test_context.merge({ :error_data => error_context })
 
         subject.should_receive(:handle_loggable_error).with(error_message, test_context)
         subject.send(severity, error_message, test_context)
