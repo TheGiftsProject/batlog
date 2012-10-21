@@ -1,5 +1,5 @@
 require 'loggers/database_logger'
-require 'loggers/rails_console_logger'
+require 'loggers/rails_logger'
 
 module Log
   class Config
