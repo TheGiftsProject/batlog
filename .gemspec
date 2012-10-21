@@ -17,4 +17,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec'
 
   s.test_files = Dir.glob('spec/lib/*_spec.rb')
+
+  s.post_install_message = "Run 'rails generate db_log' and then migrate to start using the log with database backend"
 end
