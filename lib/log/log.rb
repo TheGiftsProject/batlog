@@ -24,6 +24,7 @@ module Log
   SEVERITIES.each_key do |severity|
     (class << self; self; end).send(:define_method, severity.to_s) do |*args|
       message, ctx = *args
+      ctx = context.merge(ctx)
       self.write(severity, message, ctx)
     end
   end
@@ -43,6 +44,15 @@ module Log
 
   def self.clear_events
     Events.reset
+  end
+
+  def self.context(hash = {})
+    Thread.current[:log_context] ||= {}
+    Thread.current[:log_context].merge!(hash)
+  end
+
+  def self.clear_context
+    Thread.current[:log_context] = nil
   end
 
   private

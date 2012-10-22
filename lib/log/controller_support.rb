@@ -1,15 +1,16 @@
 require 'active_support/concern'
+
 module Log
   module ControllerSupport
 
     extend ActiveSupport::Concern
 
     included do
-      before_filter :set_exceptional_context if respond_to? :before_filter
+      before_filter :set_log_context if respond_to? :before_filter
       alias_method_chain :handle_unverified_request, :log
     end
 
-    def set_exceptional_context
+    def set_log_context
       context = {}
       context.merge!(
           :url => request.url,

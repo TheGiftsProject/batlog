@@ -100,3 +100,13 @@ end
 If your log method returns a `Hash`, it will be merged into metadata and sent to
 all subsequent loggers.
 
+
+### Controller Support
+Also included with BatLog is the log controller support to use it we recommend you add it to your ApplicationController
+by adding these lines to it.
+```ruby
+require 'log/controller_support'
+
+include Log::ControllerSupport
+```
+This does two things, first it adds a before_filter that captures as much data as it can into the log.context and also hooks for when a CSRF exception occurs
