@@ -106,7 +106,7 @@ all subsequent loggers.
 
 
 ### Controller Support
-Also included with BatLog is the log controller support to use it we recommend you add it to your ApplicationController
+Also included with BatLog is the log controller support. To use it we recommend you add it to your ApplicationController
 by adding these lines to it.
 ```ruby
 require 'log/controller_support'
