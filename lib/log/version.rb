@@ -1,3 +1,3 @@
 module Log
-  VERSION = "0.9.01"
+  VERSION = "0.9.1"
 end
