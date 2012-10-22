@@ -1,4 +1,4 @@
-# BatLog v0.9
+# BatLog v0.9 [![Build Status](https://secure.travis-ci.org/TheGiftsProject/batlog.png)](http://travis-ci.org/TheGiftsProject/batlog)
 ![batlog-logo](https://dl.dropbox.com/u/7525692/batlog-withtext.png "BatLog")
 
 ## Setup
