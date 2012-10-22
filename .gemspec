@@ -2,7 +2,7 @@
 require "./lib/log/version"
 
 Gem::Specification.new do |s|
-  s.name        = 'log'
+  s.name        = 'batlog'
   s.version     = Log::VERSION
   s.summary     = "A structured logging system"
   s.authors      = ["Asaf Gartner", "Yonatan Bergman"]
