@@ -1,8 +1,12 @@
-# BatLog v0.9
+# BatLog v0.9 [![Build Status](https://secure.travis-ci.org/TheGiftsProject/batlog.png)](http://travis-ci.org/TheGiftsProject/batlog)
 ![batlog-logo](https://dl.dropbox.com/u/7525692/batlog-withtext.png "BatLog")
 
 ## Setup
-To install BatLog into your Rails app just run `rails generate db_log` to create the db_log's table migration.
+To install BatLog into your Rails app just the gem to your Gemfile
+```ruby
+gem 'batlog'
+```
+After that run `rails generate db_log` to create the db_log's table migration.
 By default BatLog writes to three places - the database, the rails logger and exceptions to exceptional
 You can overide this behaivour by providing your own loggers or changing the default logger in the configuration.
 
@@ -102,7 +106,7 @@ all subsequent loggers.
 
 
 ### Controller Support
-Also included with BatLog is the log controller support to use it we recommend you add it to your ApplicationController
+Also included with BatLog is the log controller support. To use it we recommend you add it to your ApplicationController
 by adding these lines to it.
 ```ruby
 require 'log/controller_support'
