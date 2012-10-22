@@ -7,6 +7,7 @@ module Log
 
     included do
       before_filter :set_log_context if respond_to? :before_filter
+      after_filter  :clear_log_context if respond_to? :after_filter
       alias_method_chain :handle_unverified_request, :log
     end
 
@@ -27,6 +28,10 @@ module Log
       context.merge!(more_context) if respond_to? :more_context
       Log.clear_context
       Log.context(context)
+    end
+
+    def clear_log_context
+      Log.clear_context
     end
 
     def handle_unverified_request_with_log
