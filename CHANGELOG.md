@@ -1,6 +1,7 @@
 
 ### 0.9.1 - bug fixes
  * BUGFIX - post a message without context
+ 
 ### 0.9 - Initial Release
  * Basic Functionality
    * Log.info,warn,debug,error,fatal
