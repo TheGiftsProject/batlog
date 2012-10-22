@@ -1,4 +1,3 @@
-require "batlog"
 require 'rails'
 
 module Log

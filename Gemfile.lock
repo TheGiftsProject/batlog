@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    batlog (0.9.01)
+    batlog (0.9.1)
       rails
 
 GEM

@@ -21,7 +21,7 @@ module Log
           :referer => request.referer,
           :environment => Rails.env.to_s,
           :session_id => request.session_options[:id],
-          :session => session,
+          :session => request.session,
           :params => params
       )
       context.merge!(:current_user => current_user.try(:id)) if respond_to? :current_user
