@@ -1,10 +1,12 @@
+require 'spec_helper'
+
 describe Log::Events do
   let(:test_name) { "Test name" }
-  let(:test_data) { { a: 5 } }
+  let(:test_data) { { :a => 5 } }
 
   it "adds new event to the events array" do
     subject.add(test_name, test_data)
-    subject.all.last.should == { name: test_name, data: test_data }
+    subject.all.last.should == { :name => test_name, :data => test_data }
   end
 
   it "clears the events array" do

@@ -15,7 +15,7 @@ module Log
 
     def self.prepare_message(message, simple=false)
       if message.kind_of? Exception
-        if (simple)
+        if simple
           return message.message
         else
           return pretty_print_exception(message)

@@ -3,7 +3,7 @@ module Log
     EVENTS_KEY = :log_events
 
     def self.add(name, data)
-      Thread.current[EVENTS_KEY] = all.push({ name: name, data: data })
+      Thread.current[EVENTS_KEY] = all.push({ :name => name, :data => data })
       return self
     end
 
