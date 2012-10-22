@@ -26,13 +26,13 @@ describe Log do
         end
 
         it "adds the error's data to the context" do
-          subject.send(:dispatcher).should_receive(:dispatch).with(severity, error_message, test_context.merge(:error_data => error_context), Log::Events.all)
+          Log::Dispatcher.should_receive(:dispatch).with(severity, error_message, test_context.merge(:error_data => error_context), Log::Events.all)
           subject.send(severity, error_message, test_context)
         end
       end
 
       it "dispatches the log data to the loggers" do
-        subject.send(:dispatcher).should_receive(:dispatch).with(severity, test_message, test_context, Log::Events.all)
+        Log::Dispatcher.should_receive(:dispatch).with(severity, test_message, test_context, Log::Events.all)
         subject.send(severity, test_message, test_context)
       end
     end

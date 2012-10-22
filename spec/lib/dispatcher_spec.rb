@@ -39,7 +39,7 @@ module Log
       let (:events) { [{ :name => "bla", :data => { :b => 3 } }] }
 
       def dispatch
-        subject.dispatch(severity, message, context_data, events)
+        Dispatcher.dispatch(severity, message, context_data, events)
       end
 
       it "calls each logger's log method in order" do

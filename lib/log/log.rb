@@ -50,11 +50,7 @@ module Log
   def self.write(severity, message, context)
     context = {} if context.nil? # This is different from setting a default. If a user passes nil, it'll be converted to {}.
     context = handle_loggable_error(message, context)
-    dispatcher.dispatch(severity, message, context, Events.all)
-  end
-
-  def self.dispatcher
-    @dispatcher ||= Dispatcher.new
+    Dispatcher.dispatch(severity, message, context, Events.all)
   end
 
   def self.handle_loggable_error(message, context)
