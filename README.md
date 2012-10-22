@@ -1,52 +1,14 @@
-# Log v0.9
+# BatLog v0.9
+![batlog-logo](https://dl.dropbox.com/u/7525692/batlog-withtext.png "BatLog")
+
 ## Setup
-`Log` collects different kinds of data, but doesn't record them anywhere. To do 
-that, you must create at least one logger object.
+To install BatLog into your Rails app just run `rails generate db_log` to create the db_log's table migration.
+By default BatLog writes to three places - the database, the rails logger and exceptions to exceptional
+You can overide this behaivour by providing your own loggers or changing the default logger in the configuration.
 
-### Creating a logger
-A logger object needs to implement the following interface:
-```ruby
-class YourLogger
-  def self.log(severity, message, context, events, metadata)
-    # record stuff here
-  end
-end
-```
-
-* `severity` - `Symbol`. The log level. One of the following: `debug`, `info`, `warn`, `error`, `fatal`
-* `message` - `String`.
-* `context` - `Hash`. Extra data that's related to the message.
-* `events` - `Array`. A collection of all recorded events prior to the log call. (contents of the array covered in later section)
-* `metadata` - `Hash`. Extra data related to the logging process, added by other loggers that ran prior to this one.
-
-If your log method returns a `Hash`, it will be merged into metadata and sent to 
-all subsequent loggers.
-
-### Initializing `Log`
-```ruby
-Log.loggers([Array, Of, Loggers])
-```
-Pass an array of loggers to `Log.loggers` to set the list of loggers that will 
-be called to save the data.
-They will be called in the order they appear in the array.
-Default: `[]`
-
-```ruby
-Log.raise_on_failed_asserts(boolean)
-```
-Set to `true` if you want all asserts to raise an exception when they fail. Useful 
-when developing and testing.
-Default: `false`
-
-```ruby
-Log.raise_on_log_failure(boolean)
-```
-Set to true if you want to raise an exception when one of the loggers raises an 
-exception.
-If this is `false`, `Log` will only try to log the failure using the loggers that 
-didn't fail.
-Default: `false`
-
+The cool thing about BatLog is that it adds the concept of `context` - your logs aren't one time message left by a deity but
+ are part of a flow of a user in specific system and circumstance. BatLog lets you collect a context for the current Thread
+ and dump it as part of the BatLog whenever needed be it in Exception and be it in debug prints.
 
 ## Usage
 ### Logging
@@ -90,3 +52,61 @@ Log.assert(condition, message, context, options)
 * `options` - `Hash`. Includes the following:
   * `severity` - `Symbol`. The severity to use for logging when the condition fails. (Default: `:error`)
   * `raise_error` - `Boolean`. Indicates whether the assert should raise an error if condition fails. (Default: `false`)
+
+### Configuring `Log`
+To configure Log just create an initializer `config/initializers/log.rb`
+There you can set the configuration of the log system.
+```ruby
+Log.config.loggers << MyCustomLogger
+# or
+Log.config.loggers = [MyCustomLogger]
+```
+`Log.config.loggers` is an array of the loggers that will be called by the log dispatch each time you write a log.
+They will be called in the order they appear in the array.
+Default: `[DBlogger, RailsLogger, ExceptionalLogger]`
+
+```ruby
+Log.config,raise_on_failed_asserts = false #boolean
+```
+Set to `true` if you want all asserts to raise an exception when they fail. Useful
+when developing and testing.
+Default: `false`
+
+```ruby
+Log.config,raise_on_log_failure = false #boolean
+```
+Set to true if you want to raise an exception when one of the loggers raises an
+exception.
+If this is `false`, `Log` will only try to log the failure using the loggers that
+didn't fail.
+Default: `false`
+
+### Creating a custom logger
+A logger object needs to implement the following interface:
+```ruby
+class YourLogger
+  def self.log(severity, message, context, events, metadata)
+    # record stuff here
+  end
+end
+```
+
+* `severity` - `Symbol`. The log level. One of the following: `debug`, `info`, `warn`, `error`, `fatal`
+* `message` - `String`.
+* `context` - `Hash`. Extra data that's related to the message.
+* `events` - `Array`. A collection of all recorded events prior to the log call. (contents of the array covered in later section)
+* `metadata` - `Hash`. Extra data related to the logging process, added by other loggers that ran prior to this one.
+
+If your log method returns a `Hash`, it will be merged into metadata and sent to
+all subsequent loggers.
+
+
+### Controller Support
+Also included with BatLog is the log controller support to use it we recommend you add it to your ApplicationController
+by adding these lines to it.
+```ruby
+require 'log/controller_support'
+
+include Log::ControllerSupport
+```
+This does two things, first it adds a before_filter that captures as much data as it can into the log.context and also hooks for when a CSRF exception occurs

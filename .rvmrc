@@ -1,1 +1,1 @@
-rvm --create use 1.9.2-p320@log
+rvm use 1.8.7@log --create
