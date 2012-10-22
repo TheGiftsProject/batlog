@@ -4,6 +4,7 @@ require "./lib/log/version"
 Gem::Specification.new do |s|
   s.name        = 'batlog'
   s.version     = Log::VERSION
+  s.homepage    = "https://github.com/TheGiftsProject/batlog"
   s.summary     = "A structured logging system"
   s.authors      = ["Asaf Gartner", "Yonatan Bergman"]
   s.email       = 'agartner@ebay.com'

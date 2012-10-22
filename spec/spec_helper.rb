@@ -2,6 +2,8 @@ require 'rubygems'
 require 'bundler/setup'
 require 'batlog'
 
+require 'spec_helpers/test_logger'
+
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true

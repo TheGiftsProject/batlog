@@ -24,6 +24,7 @@ module Log
   SEVERITIES.each_key do |severity|
     (class << self; self; end).send(:define_method, severity.to_s) do |*args|
       message, ctx = *args
+      ctx ||= {}
       ctx = context.merge(ctx)
       self.write(severity, message, ctx)
     end

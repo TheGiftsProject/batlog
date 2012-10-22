@@ -17,7 +17,33 @@ describe Log do
     subject.clear_events
   end
 
+  describe "basics" do
+
+    before do
+      Log.config.loggers = [ Log::TestLogger ]
+      Log::TestLogger.reset
+    end
+
+    it "should be able to write a message without a context" do
+      Log.info("test")
+      Log::TestLogger.logs.count.should == 1
+    end
+
+    it "should be able to write a message with a context" do
+      Log.info("test", :a => 1)
+      Log::TestLogger.logs.count.should == 1
+    end
+
+    it "should be able to write a message with a context and an event" do
+      Log.info("test", {:a => 1}, [{:name => 1, :data => 2}])
+      Log::TestLogger.logs.count.should == 1
+    end
+
+  end
+
   describe "log.writes" do
+
+
     shared_examples_for "log severity" do |severity|
       context "when message is a LoggableError" do
         it "adds the log data to the context" do
