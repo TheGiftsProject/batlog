@@ -7,8 +7,8 @@ To install BatLog into your Rails app just the gem to your Gemfile
 gem 'batlog'
 ```
 After that run `rails generate db_log` to create the db_log's table migration.
-By default BatLog writes to three places - the database, the rails logger and exceptions to exceptional
-You can overide this behaivour by providing your own loggers or changing the default logger in the configuration.
+By default BatLog writes to three places - the database, the rails logger and exceptions to exceptional.
+You can overide this behaivor by providing your own loggers or changing the default logger in the configuration.
 
 The cool thing about BatLog is that it adds the concept of `context` - your logs aren't one time message left by a deity but
  are part of a flow of a user in specific system and circumstance. BatLog lets you collect a context for the current Thread
