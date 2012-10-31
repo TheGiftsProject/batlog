@@ -1,4 +1,4 @@
-# BatLog v0.9.1 [![Build Status](https://secure.travis-ci.org/TheGiftsProject/batlog.png)](http://travis-ci.org/TheGiftsProject/batlog)
+# BatLog v0.9.1 [![Build Status](https://secure.travis-ci.org/TheGiftsProject/batlog.png)](http://travis-ci.org/TheGiftsProject/batlog) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/TheGiftsProject/batlog)
 ![batlog-logo](https://dl.dropbox.com/u/7525692/batlog-withtext.png "BatLog")
 
 ## Setup
