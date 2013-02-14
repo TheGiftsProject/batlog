@@ -29,6 +29,7 @@ module Log
 
       if defined?(Honeybadger)
         require 'loggers/honeybadger_logger'
+        # we don't add it to loggers since the default is still exceptional
       end
 
       loggers
