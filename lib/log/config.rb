@@ -27,6 +27,10 @@ module Log
         loggers << ExceptionalLogger
       end
 
+      if defined?(Honeybadger)
+        require 'loggers/honeybadger_logger'
+      end
+
       loggers
 
     end
