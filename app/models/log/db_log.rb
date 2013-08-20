@@ -1,7 +1,6 @@
 module Log
   class DbLog < ActiveRecord::Base
     self.table_name = :logs
-    attr_accessible :severity, :message, :context
 
     def context=(hash = {})
       self[:context] = hash.to_json
